@@ -1,6 +1,10 @@
 from DiscordBotClient import DiscordBotClient
+from dotenv import load_dotenv
+import os
 
-token = "NjQ3MTA0NDY3Nzg2OTI0MDM0.XdbVhQ.HwHEBf675dVPBokjwkFo20uRBag"
+load_dotenv()
+token = os.getenv("TOKEN")
+
 client = DiscordBotClient(command_prefix = "$")
 
 client.run(token)
