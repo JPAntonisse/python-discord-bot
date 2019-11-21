@@ -1,4 +1,5 @@
 import discord
+import os
 from discord.ext import commands
 
 class DiscordBotClient(commands.Bot):
@@ -8,15 +9,17 @@ class DiscordBotClient(commands.Bot):
         'spongebob' : True,
     }
 
+    
+
     async def on_ready(self):
         print('Logged on as {0}!'.format(self.user))
 
-        # for extension in self.startup_extensions:
-        #     try:
-        #         self.load_extension(extension)
-        #     except Exception as e:
-        #         exc = '{}: {}'.format(type(e).__name__, e)
-        #         print('Failed to load extension {}\n{}'.format(extension, exc))
+        for filename in os.listdir('./cogs'):
+            if filename.endswith('.py'):
+                
+                self.load_extension(f'cogs.{filename[:-3]}')
+                print(f"loaded: {filename} ")
+
 
     async def on_message(self, message):
         # Check if message not from bot
@@ -25,6 +28,7 @@ class DiscordBotClient(commands.Bot):
             await self.handle_middleware(message)
 
             await self.process_commands(message)
+
 
     async def handle_middleware(self, message):
         # TODO: Dynamicly add modules here
