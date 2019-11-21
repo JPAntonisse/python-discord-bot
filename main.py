@@ -1,4 +1,4 @@
-from DiscordBotClient import DiscordBotClient
+from app.DiscordBotClient import DiscordBotClient
 from dotenv import load_dotenv
 import os
 
