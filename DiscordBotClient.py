@@ -5,18 +5,18 @@ class DiscordBotClient(commands.Bot):
     # startup_extensions = ["cogs.spongebobCommand"]
 
     properties = {
-        'spongebob' : False,
+        'spongebob' : True,
     }
 
     async def on_ready(self):
         print('Logged on as {0}!'.format(self.user))
 
-        for extension in self.startup_extensions:
-            try:
-                self.load_extension(extension)
-            except Exception as e:
-                exc = '{}: {}'.format(type(e).__name__, e)
-                print('Failed to load extension {}\n{}'.format(extension, exc))
+        # for extension in self.startup_extensions:
+        #     try:
+        #         self.load_extension(extension)
+        #     except Exception as e:
+        #         exc = '{}: {}'.format(type(e).__name__, e)
+        #         print('Failed to load extension {}\n{}'.format(extension, exc))
 
     async def on_message(self, message):
         # Check if message not from bot
