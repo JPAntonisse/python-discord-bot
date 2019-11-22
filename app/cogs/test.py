@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import os
 
 class Test(commands.Cog):
     
@@ -7,9 +8,10 @@ class Test(commands.Cog):
         self.client = client
     
     @commands.command()
-    async def ping(self, ctx):
-        await ctx.send('Pong!')
-
+    async def info(self, ctx):
+        owner = os.getenv("OWNER") 
+        version = os.getenv("VERSION") 
+        await ctx.send(f"info --> owner: {owner} ; version: {version}")
 
 # Called to setup the extension
 def setup(client):
